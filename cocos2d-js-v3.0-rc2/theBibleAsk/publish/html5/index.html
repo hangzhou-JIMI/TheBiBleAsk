@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Cocos2d-html5 Hello World test</title>
-    <link rel="icon" type="image/GIF" href="res/favicon.ico"/>
+    <title>圣经我问你答</title>
+    <link rel="icon" type="image/GIF" href="res/icon.jpg"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="full-screen" content="yes"/>
     <meta name="screen-orientation" content="portrait"/>
@@ -23,15 +23,16 @@
 <canvas id="gameCanvas" width="640" height="960"></canvas>
 
 <script src="game.min.js"></script>
+<script>
 
-<script language="JavaScript">
     window.shareData = {
-        "imgUrl": "http://www.luzexi.com/html5game/memoryfruit/res/HD/share.png",
+        "imgUrl": "http://thebibleask.luzexi.com/res/share.jpg",
         "timeLineLink": "http://thebibleask.luzexi.com/index.html",
         "tTitle": "圣经我问你答",
         "tContent": "夜来风雨声，圣经知多少",
         "tPlatform": "http://thebibleask.luzexi.com"
     };
+
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {

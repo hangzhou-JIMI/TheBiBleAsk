@@ -1,5 +1,5 @@
 var res = {
-    s_question1:"res/question1.txt"
+    s_question1:"res/question.txt"
 };
 
 var g_resources = [];
