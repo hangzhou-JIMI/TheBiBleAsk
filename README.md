@@ -10,6 +10,6 @@ TheBiBleAsk
 关于微信分享部分，在index.html里有写，它主要的原理是在doc中注册一个监听事件，在当<br>
 微信点击分享时，触发这个事件，从而写入分享内容。因此分享内容一般都会在页面全局变量window中进行设置。<br>
 
-这款游戏的地址为 htt://thbibleask.luzexi.com 最好用手机打开。<br>
+这款游戏的地址为 http://thbibleask.luzexi.com 最好用手机打开。<br>
 
 
