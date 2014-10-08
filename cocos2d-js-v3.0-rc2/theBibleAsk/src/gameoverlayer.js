@@ -32,7 +32,9 @@ var GameoverLayer = cc.Layer.extend({
         share_menu.setPosition(g_screen_size.width/2+100,g_screen_size.height/2-100);
         this.addChild(share_menu);
 
-        window.shareData.tTitle = "你在圣经问答中获得"+g_game_score+"分,超过61%的弟兄姊妹";
+        var per = 0;
+        per = Math.ceil( g_game_score / 20.0 );
+        window.shareData.tTitle = "你在圣经问答中获得"+g_game_score+"分,超过"+per+"%的弟兄姊妹";
     },
 
     reset:function()
