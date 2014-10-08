@@ -13,18 +13,15 @@ var Tittlelayer = cc.Layer.extend({
     {
         g_screen_size = cc.winSize;
 
-        var bg_layer = cc.LayerColor.create(cc.color(0,0,0),g_screen_size.width,g_screen_size.height);
-        this.addChild(bg_layer);
+        var img_bg = new cc.Sprite(res.s_tittle_bg,cc.rect(0,0,640,960));
+        img_bg.setAnchorPoint(0,0);
+        this.addChild(img_bg);
 
-        var tittle_label = cc.LabelTTF.create("欢迎来到圣经我问你答。\n点击按钮后开始游戏","",30);
-        tittle_label.setColor(cc.color(255,255,255));
-        tittle_label.setPosition(g_screen_size.width/2 , g_screen_size.height/2+100);
-        this.addChild(tittle_label);
+        var img_tittle = new cc.Sprite(res.s_tittle_tittle);
+        this.addChild(img_tittle);
+        img_tittle.setPosition(g_screen_size.width/2,g_screen_size.height/2+150);
 
-        var start_label = cc.LabelTTF.create("开始","",50);
-        start_label.setColor(cc.color(255,255,255));
-        var start_btn = cc.MenuItemLabel.create(start_label,this.start_callback,this);
-        //start_btn.setColor(cc.color(200,100,150));
+        var start_btn = new cc.MenuItemImage(res.s_tittle_btn1,res.s_tittle_btn2,null,this.startgame,this);
         this.start_menubtn = cc.Menu.create(start_btn);
         this.start_menubtn.setAnchorPoint(0,0);
         this.start_menubtn.setPosition(g_screen_size.width/2,g_screen_size.height/2 - 50);

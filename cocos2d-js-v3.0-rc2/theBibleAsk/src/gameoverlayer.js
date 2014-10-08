@@ -11,19 +11,23 @@ var GameoverLayer = cc.Layer.extend({
 
     init:function()
     {
+        var img_bg = new cc.Sprite(res.s_over_bg);
+        img_bg.setPosition(0,0);
+        img_bg.setAnchorPoint(0,0);
+        this.addChild(img_bg);
+
         var per = parseInt(g_win_num / g_question_num * 1000)/10.0;
         var tittle_lab = cc.LabelTTF.create("您的最后得分:"+g_game_score+"\n\n您的答对:"+g_win_num+"题目"+"\n\n您的正确率为:"+per+"%","",30);
-        tittle_lab.setPosition(g_screen_size.width/2, g_screen_size.height/2+200);
+        tittle_lab.setColor(cc.color(0,0,0,255));
+        tittle_lab.setPosition(g_screen_size.width/2, g_screen_size.height/2+100);
         this.addChild(tittle_lab);
 
-        var reset_label = cc.LabelTTF.create("再来一次","",30);
-        var reset_btn = cc.MenuItemLabel.create(reset_label,this.reset,this);
+        var reset_btn = cc.MenuItemImage.create(res.s_over_resetbtn1,res.s_over_resetbtn2,this.reset,this);
         var reset_menu = cc.Menu.create(reset_btn);
         reset_menu.setPosition(g_screen_size.width/2-100,g_screen_size.height/2-100);
         this.addChild(reset_menu);
 
-        var share_label = cc.LabelTTF.create("分享给弟兄姊妹","",30);
-        var share_btn = cc.MenuItemLabel.create(share_label,this.share,this);
+        var share_btn = cc.MenuItemImage.create(res.s_over_sharebtn1,res.s_over_sharebtn2,this.share,this);
         var share_menu = cc.Menu.create(share_btn);
         share_menu.setPosition(g_screen_size.width/2+100,g_screen_size.height/2-100);
         this.addChild(share_menu);

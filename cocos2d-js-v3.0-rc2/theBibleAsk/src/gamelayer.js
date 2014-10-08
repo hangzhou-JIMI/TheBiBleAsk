@@ -22,11 +22,14 @@ var GameLayer = cc.Layer.extend({
         g_win_num = 0;
         g_question_num = 1;
 
-        var bg_layer = cc.LayerColor.create(cc.color(0,0,0,255),g_screen_size.width,g_screen_size.height);
-        this.addChild(bg_layer);
+        var img_bg = new cc.Sprite(res.s_game_bg);
+        img_bg.setPosition(0,0);
+        img_bg.setAnchorPoint(0,0);
+        this.addChild(img_bg);
 
         this.score_lab = cc.LabelTTF.create("您的得分:0","",30);
-        this.score_lab.setPosition(100 , g_screen_size.height - 200);
+        this.score_lab.setColor(cc.color(0,0,0,255));
+        this.score_lab.setPosition(150 , g_screen_size.height - 120);
         this.addChild(this.score_lab);
 
         this.showQuestion();
@@ -34,15 +37,6 @@ var GameLayer = cc.Layer.extend({
 
     showQuestion:function()
     {
-        if(g_question_num > 10)
-        {
-            var scene = cc.Scene.create();
-            var layer = new GameoverLayer();
-            layer.init();
-            scene.addChild(layer);
-            cc.director.runScene(scene);
-            return;
-        }
 
         if (this.question_lab != null) {
             this.question_lab.removeFromParent();
@@ -65,10 +59,11 @@ var GameLayer = cc.Layer.extend({
 
         var question = g_questionMgr.randomQuestion();
 
-        cc.LabelAtlas.create()
+//        cc.LabelAtlas.create();
 
-        this.question_lab = cc.LabelTTF.create("第"+g_question_num+"题:\n\n编号"+question.id+"--请问:"+question.ask,"",30,cc.size(400,350));
-        this.question_lab.setPosition(g_screen_size.width/2 , g_screen_size.height/2);
+        this.question_lab = cc.LabelTTF.create("第"+g_question_num+"题:\n\n    编号"+question.id+"--请问:"+question.ask,"",30,cc.size(500,350));
+        this.question_lab.setColor(cc.color(0,0,0,255));
+        this.question_lab.setPosition(g_screen_size.width/2 , g_screen_size.height/2+100);
         this.addChild(this.question_lab);
 
         this.answer_index = parseInt( Math.random()*100%3 );
@@ -101,15 +96,19 @@ var GameLayer = cc.Layer.extend({
                 break;
         }
 
+        lab_a.setColor(cc.color(0,0,0,255));
+        lab_b.setColor(cc.color(0,0,0,255));
+        lab_c.setColor(cc.color(0,0,0,255));
+
         btn_a = cc.MenuItemLabel.create(lab_a,this.answer_a,this);
         btn_b = cc.MenuItemLabel.create(lab_b,this.answer_b,this);
         btn_c = cc.MenuItemLabel.create(lab_c,this.answer_c,this);
         this.answer_a_btn = cc.Menu.create(btn_a);
-        this.answer_a_btn.setPosition(g_screen_size.width/2,g_screen_size.height/2-100);
+        this.answer_a_btn.setPosition(g_screen_size.width/2,g_screen_size.height/2+50);
         this.answer_b_btn = cc.Menu.create(btn_b);
-        this.answer_b_btn.setPosition(g_screen_size.width/2,g_screen_size.height/2-200);
+        this.answer_b_btn.setPosition(g_screen_size.width/2,g_screen_size.height/2-50);
         this.answer_c_btn = cc.Menu.create(btn_c);
-        this.answer_c_btn.setPosition(g_screen_size.width/2,g_screen_size.height/2-300);
+        this.answer_c_btn.setPosition(g_screen_size.width/2,g_screen_size.height/2-150);
 
         this.addChild(this.answer_a_btn);
         this.addChild(this.answer_b_btn);
@@ -126,7 +125,17 @@ var GameLayer = cc.Layer.extend({
 
     lose:function()
     {
-        g_question_num++;
+//        if(g_question_num > 10)
+        {
+            var scene = cc.Scene.create();
+            var layer = new GameoverLayer();
+            layer.init();
+            scene.addChild(layer);
+            cc.director.runScene(scene);
+            return false;
+        }
+//        g_question_num++;
+        return true;
     },
 
     answer_a:function()
@@ -138,8 +147,8 @@ var GameLayer = cc.Layer.extend({
         }
         else
         {
-            this.lose();
-            this.showQuestion();
+            if(this.lose())
+                this.showQuestion();
         }
     },
     answer_b:function()
@@ -151,8 +160,8 @@ var GameLayer = cc.Layer.extend({
         }
         else
         {
-            this.lose();
-            this.showQuestion();
+            if(this.lose())
+                this.showQuestion();
         }
     },
     answer_c:function()
@@ -164,8 +173,8 @@ var GameLayer = cc.Layer.extend({
         }
         else
         {
-            this.lose();
-            this.showQuestion();
+            if(this.lose())
+                this.showQuestion();
         }
     }
 
