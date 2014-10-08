@@ -12,4 +12,4 @@ TheBiBleAsk
 
 这款游戏的地址为 http://thbibleask.luzexi.com 最好用手机打开。<br>
 
-
+![github](https://github.com/hangzhou-JIMI/TheBiBleAsk/blob/master/ui/%E5%BC%80%E5%A7%8B/%E5%BC%80%E5%A7%8B.png "github")
